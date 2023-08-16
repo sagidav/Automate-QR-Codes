@@ -1,0 +1,54 @@
+import time
+import os
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import urllib 
+    
+def get_qr(var,img_final_name,final_path):
+    
+    driver = webdriver.Chrome()
+    driver.get("https://www.vistaprint.com/qr-code-generator/builder")
+    element = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.CLASS_NAME , "swan-polyfill-empty")))
+    input_element = driver.find_element(By.CLASS_NAME, "swan-polyfill-empty")
+    input_element.clear()
+    input_element.send_keys(var)
+    
+    
+    element1 = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CLASS_NAME, "style-module--create-code-button--W999Y")))
+    element1.click()
+    
+    time.sleep(3)
+    
+    img_element = driver.find_element(By.CLASS_NAME, "swan-fluid-image")
+    image_url = img_element.get_attribute('src')
+    image_filename = os.path.join(final_path, img_final_name)
+    driver.get(image_url)
+    urllib.request.urlretrieve(image_url, image_filename)
+    driver.quit()
+
+
+
+ad_id = ['668117455854' , '668117455857' , '668117455860' , '668117455863' ,
+'668117455866' , '668117455869' , '668117455872' , '668117455875' ,
+'668117455878' , '668117455881' , '668117455884' , '668117455887' ,
+'668117455890' , '668117455893' , '668117455896' , '668117455899' ,
+'668117455902' , '668117455905' , '668117455908' , '668117455911'  ]
+
+
+links = ["https://...&ID=668117455854",
+"https://...&ID=668117455854",
+"https://...&ID=668117455854",
+"https://...&ID=668117455854",
+"https://...&ID=668117455854"
+]
+
+target_directories = ['C:/...v\\V1\\QR1', 'C:/...v\\V1\\QR2',....]
+
+for i in range(len(ad_id)):
+    variable = links[i]
+    img = 'AD ID = ' + ad_id[i] + '.png'
+    final_path = target_directories[i]
+    get_qr(variable,img,final_path)
