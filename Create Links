@@ -1,0 +1,31 @@
+
+@author: Sagi.Davidi
+"""
+import random
+from datetime import datetime
+
+now = datetime.now()
+
+f = open("ccc.txt", "a")
+f.write('\n')
+str_1 = "-------" + str(now) + "-------" + "\n"
+f.write('\n')
+f.write(str_1)
+
+ad_id_pointer = 0
+ad_id = ['668117455854' , '668117455857' , '668117455860' , '668117455863' ,
+'668117455866' , '668117455869' , '668117455872' , '668117455875' ,
+'668117455878' , '668117455881' , '668117455884' , '668117455887' ,
+'668117455890' , '668117455893' , '668117455896' , '668117455899' ,
+'668117455902' , '668117455905' , '668117455908' , '668117455911'  ]
+
+f.write("[")
+for i in range(len(a)):
+    sen = '"https://...&ad_id=' + ad_id[ad_id_pointer] + '...&utm_content=' + ad_id[ad_id_pointer] + '&ID=' + ad_id[ad_id_pointer] + '"'
+    f.write(str(sen))
+    f.write(",")
+    f.write("\n")
+    ad_id_pointer += 1
+
+f.write("]")
+f.close()
