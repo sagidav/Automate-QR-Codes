@@ -1,0 +1,35 @@
+import os
+
+num_camp = 12
+temp = 1
+versions = []
+final = []
+
+directory = "0001"
+p_directory = "C:/..."
+path = os.path.join(p_directory,directory)
+
+if os.path.exists(path) is False:
+    os.mkdir(path)
+    
+for i in range(camp):
+    version_dir = 'V' + str(temp)
+    version_dir_path = os.path.join(path,version_dir)
+    versions.append(version_dir_path)
+    if os.path.exists(version_dir_path) is False:
+        os.mkdir(version_dir_path)
+    temp += 1
+    
+for i in range((camp)):
+    qr1_dir_path = os.path.join(versions[i],'QR1')
+    qr2_dir_path = os.path.join(versions[i],'QR2')
+    
+    if os.path.exists(qr1_dir_path) is False:
+        os.mkdir(qr1_dir_path)
+    if os.path.exists(qr2_dir_path) is False:
+        os.mkdir(qr2_dir_path)
+    
+    final.append(qr1_dir_path)
+    final.append(qr2_dir_path)
+
+print (final)
